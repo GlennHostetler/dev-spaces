@@ -17,11 +17,11 @@ jobs:
   - script: |
       set -e
       set -x
-      docker build -f samples/${dotnetcore}/getting-started/webfrontend/Dockerfile -t $(imageRepo):$(imageTag) samples/${dotnetcore}/getting-started/webfrontend/
+      docker build -f samples/dotnetcore/getting-started/webfrontend/Dockerfile -t $(imageRepo):$(imageTag) samples/dotnetcore/getting-started/webfrontend/
       docker login -u $(dockerId) -p $pswd $(acrUrl)
       docker push $(imageRepo):$(imageTag)
       docker logout $(acrUrl)
-      cp -r samples/${dotnetcore}/getting-started/webfrontend/charts/webfrontend $(Build.ArtifactStagingDirectory)/chart
+      cp -r samples/dotnetcore/getting-started/webfrontend/charts/webfrontend $(Build.ArtifactStagingDirectory)/chart
       mkdir -p $(Build.ArtifactStagingDirectory)/image
       echo '$(imageRepo)' > $(Build.ArtifactStagingDirectory)/image/repo.txt
       echo '$(imageTag)' > $(Build.ArtifactStagingDirectory)/image/tag.txt
@@ -42,11 +42,11 @@ jobs:
   - script: |
       set -e
       set -x
-      docker build -f samples/${dotnetcore}/getting-started/mywebapi/Dockerfile -t $(imageRepo):$(imageTag) samples/${dotnetcore}/getting-started/mywebapi/
+      docker build -f samples/dotnetcore/getting-started/mywebapi/Dockerfile -t $(imageRepo):$(imageTag) samples/dotnetcore/getting-started/mywebapi/
       docker login -u $(dockerUser) -p $pswd $(acrUrl)
       docker push $(imageRepo):$(imageTag)
       docker logout $(acrUrl)
-      cp -r samples/${dotnetcore}/getting-started/mywebapi/charts/mywebapi $(Build.ArtifactStagingDirectory)/chart
+      cp -r samples/dotnetcore/getting-started/mywebapi/charts/mywebapi $(Build.ArtifactStagingDirectory)/chart
       mkdir -p $(Build.ArtifactStagingDirectory)/image
       echo '$(imageRepo)' > $(Build.ArtifactStagingDirectory)/image/repo.txt
       echo '$(imageTag)' > $(Build.ArtifactStagingDirectory)/image/tag.txt
